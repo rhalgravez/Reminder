@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddReminderViewController : UIViewController
+@interface AddReminderViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+
+- (IBAction)donePressed:(UIBarButtonItem *)sender;
+- (IBAction)cancelPressed:(UIBarButtonItem *)sender;
+- (IBAction)pickerStartDateChanged:(UIDatePicker *)sender;
+//- (IBAction)pickerEndDateChanged:(UIDatePicker *)sender;
+
 
 @end

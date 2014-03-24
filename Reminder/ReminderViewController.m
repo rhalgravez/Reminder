@@ -7,14 +7,15 @@
 //
 
 #import "ReminderViewController.h"
-#import "AddReminderViewController.h"
+#import "AddReminderTableViewController.h"
 #import "PersistAndFetchReminderData.h"
 #import "Reminder.h"
 
-@interface ReminderViewController ()
+@interface ReminderViewController ()//<AddReminderDelegate>
 {
     NSMutableArray *remindersArray;
 }
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -30,6 +31,12 @@
    
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    PersistAndFetchReminderData *fetchReminders = [[PersistAndFetchReminderData alloc]init];
+    remindersArray = (NSMutableArray*)[fetchReminders fetchReminders:_currentUser];
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -40,6 +47,19 @@
 {
     //AddReminderViewController *addReminder = [segue sourceViewController];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"addReminderSegue"]) {
+
+        UINavigationController *navigationController = segue.destinationViewController;
+        AddReminderTableViewController *addReminderTVC = (AddReminderTableViewController *)[navigationController.viewControllers objectAtIndex:0];
+        addReminderTVC.currentUser = self.currentUser;
+//        addReminderTVC.delegate =self ;
+
+    }
+}
+
+
 
 #pragma mark - TableViewDataSource Protocole 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -58,7 +78,12 @@
     }
     Reminder *reminder = [remindersArray objectAtIndex:indexPath.row];
     cell.textLabel.text = reminder.title;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Start:%@\tEnd:%@",reminder.startDate, reminder.endDate];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, y, h:mm a"];
+    NSLog(@"Todays date is %@",[formatter stringFromDate:[reminder startDate]]);
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Start:%@  End:%@",[formatter stringFromDate:[reminder startDate]], [formatter stringFromDate:[reminder endDate]]];
 //    NSLog(@"ObjectID:%@",[reminder.objectID description]);
     return cell;
 }
@@ -76,8 +101,8 @@
     [tableView reloadData];
 }
 
-- (IBAction)addUser:(id)sender
-{
+//- (IBAction)addUser:(id)sender
+//{
     //------Save user
 //    NSManagedObjectContext *context = [self managedObjectContext];
 //    // Create a new managed object for ModalUser
@@ -164,36 +189,36 @@
     //------end delete specific user
     
     //------fetch all reminders from specif user
-    NSManagedObjectContext *context = [self managedObjectContext];
-    NSError *error = nil;
-    //NSLog(@"facebookID:%@", userID);
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"UserTable" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSString *userID= @"0004";
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID = %@",userID];
-    [fetchRequest setPredicate:predicate];
-    
-
-    NSArray *array = [context executeFetchRequest:fetchRequest error:&error];
-    NSLog(@"TAMANIO:%d",[array count]);
-    
-    NSMutableSet *reminders = [[NSMutableSet alloc]init];
-    
-    for (NSManagedObject *managedObject in array) {
-        NSLog(@"REMINDERS: %@",[[managedObject valueForKey:@"reminders"] valueForKey:@"title"]);
-        NSLog(@"REMINDERS: %@",[[managedObject valueForKey:@"reminders"] valueForKey:@"notes"]);
-        NSLog(@"REMINDERS: %@",[[managedObject valueForKey:@"reminders"] valueForKey:@"startDate"]);
-        NSLog(@"REMINDERS: %@",[[managedObject valueForKey:@"reminders"] valueForKey:@"endDate"]);
-        reminders = [managedObject valueForKey:@"reminders"];
-    }
-    NSMutableArray *marray = (NSMutableArray*)[reminders allObjects];
-    NSManagedObject *object = [marray objectAtIndex:1];
-    NSLog(@"NSSet:%@", [object valueForKey:@"notes"]);
-    //------end fetch all reminders from specific user
-    
-}
+//    NSManagedObjectContext *context = [self managedObjectContext];
+//    NSError *error = nil;
+//    //NSLog(@"facebookID:%@", userID);
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    NSEntityDescription *entity = [NSEntityDescription
+//                                   entityForName:@"UserTable" inManagedObjectContext:context];
+//    [fetchRequest setEntity:entity];
+//    NSString *userID= @"0004";
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID = %@",userID];
+//    [fetchRequest setPredicate:predicate];
+//    
+//
+//    NSArray *array = [context executeFetchRequest:fetchRequest error:&error];
+//    NSLog(@"TAMANIO:%d",[array count]);
+//    
+//    NSMutableSet *reminders = [[NSMutableSet alloc]init];
+//    
+//    for (NSManagedObject *managedObject in array) {
+//        NSLog(@"REMINDERS: %@",[[managedObject valueForKey:@"reminders"] valueForKey:@"title"]);
+//        NSLog(@"REMINDERS: %@",[[managedObject valueForKey:@"reminders"] valueForKey:@"notes"]);
+//        NSLog(@"REMINDERS: %@",[[managedObject valueForKey:@"reminders"] valueForKey:@"startDate"]);
+//        NSLog(@"REMINDERS: %@",[[managedObject valueForKey:@"reminders"] valueForKey:@"endDate"]);
+//        reminders = [managedObject valueForKey:@"reminders"];
+//    }
+//    NSMutableArray *marray = (NSMutableArray*)[reminders allObjects];
+//    NSManagedObject *object = [marray objectAtIndex:1];
+//    NSLog(@"NSSet:%@", [object valueForKey:@"notes"]);
+//    //------end fetch all reminders from specific user
+//    
+//}
 
 #pragma mark - Core Data
 - (NSManagedObjectContext *)managedObjectContext {
@@ -204,4 +229,15 @@
     }
     return context;
 }
+//#pragma mark - Add reminder delegate methods
+//
+//-(void)addReminder:(Reminder *)reminder{
+//    
+//    NSLog(@"Simon Jalo");
+//    
+//}
+//
+//-(void)reloadReminder{
+//    
+//}
 @end

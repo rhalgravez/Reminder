@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+@class Reminder;
 
 @interface PersistAndFetchReminderData : NSObject
 
 -(NSArray *)fetchReminders:(NSString *)userWithID;
 -(void)deleteReminder:(NSManagedObjectID *)objectID;
+-(void) saveReminder:(Reminder*)newReminder forUserWithID:(NSString *)userWithID;
 
 @end

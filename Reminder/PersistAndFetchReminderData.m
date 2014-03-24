@@ -11,6 +11,40 @@
 
 @implementation PersistAndFetchReminderData
 
+-(void) saveReminder:(Reminder*)newReminder forUserWithID:(NSString *)userWithID
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSError *error = nil;
+//    NSLog(@"facebookID:%@", userID);
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"UserTable" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+//    NSString *userID= @"0004";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@",userWithID];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray *array = [context executeFetchRequest:fetchRequest error:&error];
+    NSManagedObject *managedObject = [array objectAtIndex:0];
+    
+    NSManagedObject *reminderTable = [NSEntityDescription insertNewObjectForEntityForName:@"ReminderTable" inManagedObjectContext:context];
+    //Save the value in the corresponding attribute
+    [reminderTable setValue:newReminder.title forKey:@"title"];
+    [reminderTable setValue:newReminder.note forKey:@"notes"];
+    [reminderTable setValue:newReminder.startDate forKey:@"startDate"];
+    [reminderTable setValue:newReminder.endDate forKey:@"endDate"];
+    
+    [reminderTable setValue:managedObject forKey:@"user"];
+    
+    
+    //NSError *error = nil;
+    // Save the object to persistent store
+    if (![context save:&error]) {
+        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+    }
+    
+}
+
 -(NSArray *)fetchReminders:(NSString *)userWithID
 {
     NSManagedObjectContext *context = [self managedObjectContext];
