@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6201E64318DA5DA20090ECE3 /* PersistAndFetchUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6201E64218DA5DA20090ECE3 /* PersistAndFetchUserData.m */; };
 		624AAC3818DFE4C2000EDB2D /* AddReminderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 624AAC3718DFE4C2000EDB2D /* AddReminderTableViewController.m */; };
+		626A2F3518E1F93B000ADB2F /* EditReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 626A2F3418E1F93B000ADB2F /* EditReminderViewController.m */; };
 		62A5ED8318D21F8800230BEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A5ED8218D21F8800230BEF /* Foundation.framework */; };
 		62A5ED8518D21F8800230BEF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A5ED8418D21F8800230BEF /* CoreGraphics.framework */; };
 		62A5ED8718D21F8800230BEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62A5ED8618D21F8800230BEF /* UIKit.framework */; };
@@ -27,7 +28,6 @@
 		62A5EDBC18D26CC700230BEF /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A5EDBB18D26CC700230BEF /* UserViewController.m */; };
 		62CAFEB318D8B2F800591C02 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CAFEB218D8B2F800591C02 /* CoreData.framework */; };
 		62CAFEB618D8B49400591C02 /* ReminderDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62CAFEB418D8B49400591C02 /* ReminderDataModel.xcdatamodeld */; };
-		62F9AD0218DB9AEB00CD1825 /* AddReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F9AD0118DB9AEB00CD1825 /* AddReminderViewController.m */; };
 		62F9AD0518DBA62F00CD1825 /* PersistAndFetchReminderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F9AD0418DBA62F00CD1825 /* PersistAndFetchReminderData.m */; };
 		62F9AD0818DBB92400CD1825 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F9AD0718DBB92400CD1825 /* Reminder.m */; };
 		C58924774E054B30ABDB659E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB90DA362604D339B1256ED /* libPods.a */; };
@@ -49,6 +49,8 @@
 		6201E64218DA5DA20090ECE3 /* PersistAndFetchUserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistAndFetchUserData.m; sourceTree = "<group>"; };
 		624AAC3618DFE4C2000EDB2D /* AddReminderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReminderTableViewController.h; sourceTree = "<group>"; };
 		624AAC3718DFE4C2000EDB2D /* AddReminderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReminderTableViewController.m; sourceTree = "<group>"; };
+		626A2F3318E1F93B000ADB2F /* EditReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditReminderViewController.h; sourceTree = "<group>"; };
+		626A2F3418E1F93B000ADB2F /* EditReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditReminderViewController.m; sourceTree = "<group>"; };
 		62A5ED7F18D21F8800230BEF /* Reminder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reminder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A5ED8218D21F8800230BEF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		62A5ED8418D21F8800230BEF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -74,8 +76,6 @@
 		62A5EDBB18D26CC700230BEF /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		62CAFEB218D8B2F800591C02 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		62CAFEB518D8B49400591C02 /* ReminderDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReminderDataModel.xcdatamodel; sourceTree = "<group>"; };
-		62F9AD0018DB9AEB00CD1825 /* AddReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReminderViewController.h; sourceTree = "<group>"; };
-		62F9AD0118DB9AEB00CD1825 /* AddReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReminderViewController.m; sourceTree = "<group>"; };
 		62F9AD0318DBA62F00CD1825 /* PersistAndFetchReminderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistAndFetchReminderData.h; sourceTree = "<group>"; };
 		62F9AD0418DBA62F00CD1825 /* PersistAndFetchReminderData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistAndFetchReminderData.m; sourceTree = "<group>"; };
 		62F9AD0618DBB92400CD1825 /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
@@ -158,14 +158,14 @@
 				62A5EDBB18D26CC700230BEF /* UserViewController.m */,
 				6201E64118DA5DA20090ECE3 /* PersistAndFetchUserData.h */,
 				6201E64218DA5DA20090ECE3 /* PersistAndFetchUserData.m */,
-				62F9AD0018DB9AEB00CD1825 /* AddReminderViewController.h */,
-				62F9AD0118DB9AEB00CD1825 /* AddReminderViewController.m */,
 				624AAC3618DFE4C2000EDB2D /* AddReminderTableViewController.h */,
 				624AAC3718DFE4C2000EDB2D /* AddReminderTableViewController.m */,
 				62F9AD0318DBA62F00CD1825 /* PersistAndFetchReminderData.h */,
 				62F9AD0418DBA62F00CD1825 /* PersistAndFetchReminderData.m */,
 				62F9AD0618DBB92400CD1825 /* Reminder.h */,
 				62F9AD0718DBB92400CD1825 /* Reminder.m */,
+				626A2F3318E1F93B000ADB2F /* EditReminderViewController.h */,
+				626A2F3418E1F93B000ADB2F /* EditReminderViewController.m */,
 			);
 			path = Reminder;
 			sourceTree = "<group>";
@@ -335,12 +335,12 @@
 			files = (
 				6201E64318DA5DA20090ECE3 /* PersistAndFetchUserData.m in Sources */,
 				62A5EDB918D235AF00230BEF /* LoginViewController.m in Sources */,
+				626A2F3518E1F93B000ADB2F /* EditReminderViewController.m in Sources */,
 				624AAC3818DFE4C2000EDB2D /* AddReminderTableViewController.m in Sources */,
 				62CAFEB618D8B49400591C02 /* ReminderDataModel.xcdatamodeld in Sources */,
 				62F9AD0818DBB92400CD1825 /* Reminder.m in Sources */,
 				62F9AD0518DBA62F00CD1825 /* PersistAndFetchReminderData.m in Sources */,
 				62A5EDBC18D26CC700230BEF /* UserViewController.m in Sources */,
-				62F9AD0218DB9AEB00CD1825 /* AddReminderViewController.m in Sources */,
 				62A5ED9318D21F8900230BEF /* ReminderAppDelegate.m in Sources */,
 				62A5ED8F18D21F8900230BEF /* main.m in Sources */,
 				62A5ED9918D21F8900230BEF /* ReminderViewController.m in Sources */,

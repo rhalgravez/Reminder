@@ -109,6 +109,28 @@
 //    }
 }
 
+-(void) rewriteReminder:(Reminder*)reminder WithObjectID:(NSManagedObjectID *)objectID
+{
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSError *error = nil;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ReminderTable" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSManagedObject *managedObject = [context objectWithID:objectID];
+    
+    [managedObject setValue:reminder.title forKey:@"title"];
+    [managedObject setValue:reminder.note forKey:@"notes"];
+    [managedObject setValue:reminder.startDate forKey:@"startDate"];
+    [managedObject setValue:reminder.endDate forKey:@"endDate"];
+    
+    if (![context save:&error]) {
+        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+    }
+    
+}
+
 - (NSManagedObjectContext *)managedObjectContext
 {
     NSManagedObjectContext *context = nil;

@@ -8,6 +8,7 @@
 
 #import "ReminderViewController.h"
 #import "AddReminderTableViewController.h"
+#import "EditReminderViewController.h"
 #import "PersistAndFetchReminderData.h"
 #import "Reminder.h"
 
@@ -57,6 +58,18 @@
 //        addReminderTVC.delegate =self ;
 
     }
+    
+    if ([segue.identifier isEqualToString:@"editReminderSegue"]) {
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        
+        EditReminderViewController *editReminderVC = segue.destinationViewController;
+//        AddReminderTableViewController *addReminderTVC = (AddReminderTableViewController *)[navigationController.viewControllers objectAtIndex:0];
+        editReminderVC.selectedReminder = [remindersArray objectAtIndex:indexPath.row];
+        
+//        addReminderTVC.delegate =self ;
+        
+    }
 }
 
 
@@ -81,7 +94,7 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, y, h:mm a"];
-    NSLog(@"Todays date is %@",[formatter stringFromDate:[reminder startDate]]);
+//    NSLog(@"Todays date is %@",[formatter stringFromDate:[reminder startDate]]);
     
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Start:%@  End:%@",[formatter stringFromDate:[reminder startDate]], [formatter stringFromDate:[reminder endDate]]];
 //    NSLog(@"ObjectID:%@",[reminder.objectID description]);
@@ -99,6 +112,13 @@
     
     // Request table view to reload
     [tableView reloadData];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Reminder *selectedReminder = [[Reminder alloc]init];
+    selectedReminder = [remindersArray objectAtIndex:indexPath.row];
+    
 }
 
 //- (IBAction)addUser:(id)sender

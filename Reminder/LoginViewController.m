@@ -10,6 +10,7 @@
 #import "ReminderAppDelegate.h"
 #import "PersistAndFetchUserData.h"
 #import "ReminderViewController.h"
+#import "UserViewController.h"
 
 @interface LoginViewController ()
 
@@ -61,6 +62,7 @@
         UINavigationController *navigationController = (UINavigationController *)[[tabBar viewControllers] objectAtIndex:0];
         ReminderViewController *reminderVC = (ReminderViewController *)[navigationController.viewControllers objectAtIndex:0];
         reminderVC.currentUser = self.currentUser;
+        
     }
 }
 

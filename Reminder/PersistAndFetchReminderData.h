@@ -14,5 +14,6 @@
 -(NSArray *)fetchReminders:(NSString *)userWithID;
 -(void)deleteReminder:(NSManagedObjectID *)objectID;
 -(void) saveReminder:(Reminder*)newReminder forUserWithID:(NSString *)userWithID;
+-(void) rewriteReminder:(Reminder*)reminder WithObjectID:(NSManagedObjectID *)objectID;
 
 @end

@@ -1,12 +1,12 @@
 //
-//  AddReminderTableViewController.m
+//  EditReminderViewController.m
 //  Reminder
 //
-//  Created by Roberto on 3/23/14.
+//  Created by Roberto on 3/25/14.
 //  Copyright (c) 2014 com. All rights reserved.
 //
 
-#import "AddReminderTableViewController.h"
+#import "EditReminderViewController.h"
 #import "Reminder.h"
 #import "PersistAndFetchReminderData.h"
 
@@ -14,7 +14,7 @@
 #define kEndDatePickerIndex 4
 #define kDatePickerCellHeight 164
 
-@interface AddReminderTableViewController ()
+@interface EditReminderViewController ()
 
 @property (strong, nonatomic) NSDateFormatter *dateFormatter;
 
@@ -40,22 +40,31 @@
 
 @end
 
-@implementation AddReminderTableViewController
+@implementation EditReminderViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
+
     [self setupStartDateLabel];
     [self setupEndDateLabel];
     
     _notesTextView.text = @"Add a comment...";
-    _notesTextView.textColor = [UIColor lightGrayColor];
+    //_notesTextView.textColor = [UIColor lightGrayColor];
+    
+    _titleTextField.text = _selectedReminder.title;
+    _startDateLabel.text = [self.dateFormatter stringFromDate:_selectedReminder.startDate];
+    _endDateLabel.text = [self.dateFormatter stringFromDate:_selectedReminder.endDate];
+    _notesTextView.text = [_selectedReminder note];
     
     //no se que pedo con este metodo
     [self signUpForKeyboardNotifications];
     
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -71,7 +80,7 @@
     [self.dateFormatter setTimeStyle:NSDateFormatterShortStyle];
     
     NSDate *defaultDate = [NSDate date];
-   
+    
     self.startDateLabel.text = [self.dateFormatter stringFromDate:defaultDate];
     self.startDateLabel.textColor = [self.tableView tintColor];
     
@@ -100,14 +109,14 @@
 
 - (void)keyboardWillShow {
     
-//    if (self.startDatePickerIsShowing){
+    //    if (self.startDatePickerIsShowing){
     
-        [self hideDatePickerCell];
-//    }
+    [self hideDatePickerCell];
+    //    }
     
-//    if (self.endDatePickerIsShowing) {
-        [self hideEndDatePickerCell];
-//    }
+    //    if (self.endDatePickerIsShowing) {
+    [self hideEndDatePickerCell];
+    //    }
 }
 
 #pragma mark - Table view methods
@@ -275,13 +284,8 @@
     [textView resignFirstResponder];
 }
 
-
-#pragma mark - Action methods
-
-- (IBAction)donePressed:(UIBarButtonItem *)sender
+- (IBAction)saveChanges:(UIBarButtonItem *)sender
 {
-    
-//    [_delegate addReminder:Nil];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"MMM d, y, h:mm a"];
     NSDate *date = [[NSDate alloc]init];
@@ -295,21 +299,14 @@
     
     date = [dateFormat dateFromString:_endDateLabel.text];
     newReminder.endDate = date;
+    newReminder.objectID = _selectedReminder.objectID;
     
+    PersistAndFetchReminderData *rewriteReminder;
+    rewriteReminder = [[PersistAndFetchReminderData alloc] init];
+    [rewriteReminder rewriteReminder:newReminder WithObjectID:newReminder.objectID];
     
-    PersistAndFetchReminderData *saveReminder;
-    saveReminder = [[PersistAndFetchReminderData alloc] init];
-    [saveReminder saveReminder:newReminder forUserWithID:_currentUser];
+    [self.navigationController popViewControllerAnimated:YES];
     
-    
-    
-    
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-- (IBAction)cancelPressed:(UIBarButtonItem *)sender
-{
-    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)pickerStartDateChanged:(UIDatePicker *)sender
