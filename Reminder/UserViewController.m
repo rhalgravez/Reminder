@@ -7,6 +7,8 @@
 //
 
 #import "UserViewController.h"
+#import "PersistAndFetchUserData.h"
+#import "User.h"
 
 @interface UserViewController ()
 
@@ -33,8 +35,19 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    PersistAndFetchUserData *fetchUser =[[PersistAndFetchUserData alloc]init];
+    User *userProfile = [[User alloc]init];
+    
+    userProfile = [fetchUser fetchUserData:_currentUser];
     
     [FBProfilePictureView class];
+    
+    self.profilePictureView.profileID = userProfile.userID;
+    self.emailLabel.text = userProfile.email;
+    self.usernameLabel.text = userProfile.username;
+    self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", userProfile.first_name, userProfile.last_name];
+    
+    NSLog(@"%@", _currentUser);
 }
 
 - (void)didReceiveMemoryWarning

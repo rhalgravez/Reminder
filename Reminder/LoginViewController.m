@@ -63,6 +63,9 @@
         ReminderViewController *reminderVC = (ReminderViewController *)[navigationController.viewControllers objectAtIndex:0];
         reminderVC.currentUser = self.currentUser;
         
+        UserViewController *userVC = (UserViewController *) [[tabBar viewControllers] objectAtIndex:2];
+        userVC.currentUser = self.currentUser;
+        
     }
 }
 

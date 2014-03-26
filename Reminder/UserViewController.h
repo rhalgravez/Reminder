@@ -10,5 +10,7 @@
 
 @interface UserViewController : UIViewController
 
+@property (nonatomic, strong) NSString *currentUser;
+
 - (IBAction)logout:(id)sender;
 @end

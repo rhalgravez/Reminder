@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 @interface PersistAndFetchUserData : NSObject
 
 -(void) persistData:(NSDictionary *)data;
+-(User *) fetchUserData:(NSString *)userID;
+
 
 @end

@@ -29,12 +29,16 @@
     PersistAndFetchReminderData *fetchReminders = [[PersistAndFetchReminderData alloc]init];
     remindersArray = (NSMutableArray*)[fetchReminders fetchReminders:_currentUser];
     
+    remindersArray =[self presentReminders:remindersArray];
+    
    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     PersistAndFetchReminderData *fetchReminders = [[PersistAndFetchReminderData alloc]init];
     remindersArray = (NSMutableArray*)[fetchReminders fetchReminders:_currentUser];
+    
+    remindersArray =[self presentReminders:remindersArray];
     [self.tableView reloadData];
 }
 
@@ -121,124 +125,38 @@
     
 }
 
-//- (IBAction)addUser:(id)sender
-//{
-    //------Save user
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    // Create a new managed object for ModalUser
-//    NSManagedObject *userTable = [NSEntityDescription insertNewObjectForEntityForName:@"UserTable" inManagedObjectContext:context];
-//    //Save the value in the corresponding attribute
-//    [userTable setValue:@"0004" forKey:@"userID"];
-//    [userTable setValue:@"Username4" forKey:@"username"];
-//    [userTable setValue:@"firstName4" forKey:@"first_name"];
-//    [userTable setValue:@"lastName4" forKey:@"last_name"];
-//    [userTable setValue:@"email4@email.com" forKey:@"email"];
-//    
-//    NSError *error = nil;
-//    // Save the object to persistent store
-//    if (![context save:&error]) {
-//        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
-//    }
-    //------End save user
+-(NSMutableArray *) presentReminders:(NSMutableArray *) reminders
+{
+    NSMutableArray *presentreminderArray = [[NSMutableArray alloc]init];
     
-    //------Save reminder for a specific user
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    NSError *error = nil;
-//    //NSLog(@"facebookID:%@", userID);
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entity = [NSEntityDescription
-//                                   entityForName:@"UserTable" inManagedObjectContext:context];
-//    [fetchRequest setEntity:entity];
-//    NSString *userID= @"0004";
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@",userID];
-//    [fetchRequest setPredicate:predicate];
+    NSDate *today = [NSDate date];
+//    NSDate *compareDate = [NSDate dateWithString:@"your date"];
 //    
-//    NSArray *array = [context executeFetchRequest:fetchRequest error:&error];
-//    NSManagedObject *managedObject = [array objectAtIndex:0];
-//    //NSLog(@"Username:%@",[managedObject valueForKey:@"username"]);
-//    //FLEUser *fetchUser = [[FLEUser alloc]init];
-////    for (NSManagedObject *facebookUser in array) {
-////        NSLog(@"Username:%@",[facebookUser valueForKey:@"username"]);
-////
-////        //[context save:&error];
-////    }
+//    NSComparisonResult compareResult = [today compare : compareDate];
 //    
-//    NSDateFormatter *mmddccyy = [[NSDateFormatter alloc] init];
-//    mmddccyy.timeStyle = NSDateFormatterNoStyle;
-//    mmddccyy.dateFormat = @"MM/dd/yyyy";
-//    NSDate *d1 = [mmddccyy dateFromString:@"12/11/2012"];
-//    NSDate *d2 = [mmddccyy dateFromString:@"12/12/2012"];
-//    
-//    NSManagedObject *reminderTable = [NSEntityDescription insertNewObjectForEntityForName:@"ReminderTable" inManagedObjectContext:context];
-//    //Save the value in the corresponding attribute
-//    [reminderTable setValue:@"titulo2-4" forKey:@"title"];
-//    [reminderTable setValue:@"ejemplo de nota 2-4" forKey:@"notes"];
-//    [reminderTable setValue:d1 forKey:@"startDate"];
-//    [reminderTable setValue:d2 forKey:@"endDate"];
-//    
-//    [reminderTable setValue:managedObject forKey:@"user"];
-//    
-//
-//    //NSError *error = nil;
-//    // Save the object to persistent store
-//    if (![context save:&error]) {
-//        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+//    if (compareResult == NSOrderedAscending)
+//    {
+//        NSLog(@"CompareDate is in the future");
 //    }
-    //-----end save reminder for specif user
+//    else if (compareResult == NSOrderedDescending)
+//    {
+//        NSLog(@"CompareDate is in the past");
+//    }
     
-    //------delete specific user (must delete its reminders)
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    NSError *error = nil;
-//    //NSLog(@"facebookID:%@", userID);
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entity = [NSEntityDescription
-//                                   entityForName:@"UserTable" inManagedObjectContext:context];
-//    [fetchRequest setEntity:entity];
-//    NSString *userID = @"0002";
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@",userID];
-//    [fetchRequest setPredicate:predicate];
-//    
-//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//    
-//    //FLEUser *fetchUser = [[FLEUser alloc]init];
-//    for (NSManagedObject *facebookUser in fetchedObjects) {
-//        //NSLog(@"Username:%@",[facebookUser valueForKey:@"facebookUsername"]);
-//        [context deleteObject:facebookUser];
-//        [context save:&error];
-//    }
-    //------end delete specific user
+    for (int i = 0; i < [reminders count]; i++) {
+        Reminder *tempReminder = [[Reminder alloc]init];
+        tempReminder = [reminders objectAtIndex:i];
+        NSComparisonResult compareResult = [today compare : tempReminder.startDate];
+        if (compareResult == NSOrderedAscending) {
+//            NSLog(@"REminder:%@",tempReminder.title);
+            [presentreminderArray addObject:tempReminder];
+        }
+        
+        
+    }
     
-    //------fetch all reminders from specif user
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//    NSError *error = nil;
-//    //NSLog(@"facebookID:%@", userID);
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entity = [NSEntityDescription
-//                                   entityForName:@"UserTable" inManagedObjectContext:context];
-//    [fetchRequest setEntity:entity];
-//    NSString *userID= @"0004";
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID = %@",userID];
-//    [fetchRequest setPredicate:predicate];
-//    
-//
-//    NSArray *array = [context executeFetchRequest:fetchRequest error:&error];
-//    NSLog(@"TAMANIO:%d",[array count]);
-//    
-//    NSMutableSet *reminders = [[NSMutableSet alloc]init];
-//    
-//    for (NSManagedObject *managedObject in array) {
-//        NSLog(@"REMINDERS: %@",[[managedObject valueForKey:@"reminders"] valueForKey:@"title"]);
-//        NSLog(@"REMINDERS: %@",[[managedObject valueForKey:@"reminders"] valueForKey:@"notes"]);
-//        NSLog(@"REMINDERS: %@",[[managedObject valueForKey:@"reminders"] valueForKey:@"startDate"]);
-//        NSLog(@"REMINDERS: %@",[[managedObject valueForKey:@"reminders"] valueForKey:@"endDate"]);
-//        reminders = [managedObject valueForKey:@"reminders"];
-//    }
-//    NSMutableArray *marray = (NSMutableArray*)[reminders allObjects];
-//    NSManagedObject *object = [marray objectAtIndex:1];
-//    NSLog(@"NSSet:%@", [object valueForKey:@"notes"]);
-//    //------end fetch all reminders from specific user
-//    
-//}
+    return presentreminderArray;
+}
 
 #pragma mark - Core Data
 - (NSManagedObjectContext *)managedObjectContext {

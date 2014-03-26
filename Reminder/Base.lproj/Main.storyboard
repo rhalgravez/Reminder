@@ -138,7 +138,7 @@
                                                         <!--2014-03-24 04:05:51 +0000-->
                                                     </date>
                                                     <timeZone key="timeZone" name="America/Los_Angeles">
-                                                        <mutableData key="data">
+                                                        <data key="data">
 VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
 y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
 5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
@@ -156,7 +156,7 @@ f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</mutableData>
+</data>
                                                     </timeZone>
                                                     <connections>
                                                         <action selector="pickerStartDateChanged:" destination="55h-xC-hDD" eventType="valueChanged" id="qQs-Rd-jiV"/>
@@ -202,7 +202,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                         <!--2014-03-24 16:30:58 +0000-->
                                                     </date>
                                                     <timeZone key="timeZone" name="America/Los_Angeles">
-                                                        <mutableData key="data">
+                                                        <data key="data">
 VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
 y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
 5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
@@ -220,7 +220,7 @@ f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</mutableData>
+</data>
                                                     </timeZone>
                                                     <connections>
                                                         <action selector="pickerEndDateChanged:" destination="55h-xC-hDD" eventType="valueChanged" id="ren-eK-D6y"/>
@@ -279,7 +279,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kb1-84-OQF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1662" y="480"/>
+            <point key="canvasLocation" x="2188" y="480"/>
         </scene>
         <!--Add Reminder Table View Controller-->
         <scene sceneID="yT7-CY-dD3">
@@ -538,7 +538,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;username>" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="52O-at-1Zi">
-                                <rect key="frame" x="112" y="171" width="97" height="21"/>
+                                <rect key="frame" x="20" y="171" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
@@ -599,7 +599,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="-138" y="138"/>
         </scene>
-        <!--View Controller - Past-->
+        <!--View Controller - Past Reminders-->
         <scene sceneID="53f-nZ-uUV">
             <objects>
                 <viewController id="cWd-CV-Gqd" sceneMemberID="viewController">
@@ -610,21 +610,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <view key="view" contentMode="scaleToFill" id="TTO-ML-kNO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Past" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rwo-ib-gX6">
-                                <rect key="frame" x="126" y="132" width="35" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Past" id="df6-Ev-qgO"/>
+                    <navigationItem key="navigationItem" title="Past Reminders" id="MWZ-vY-siB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wWU-Lm-aac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="793" y="790"/>
+            <point key="canvasLocation" x="1193" y="790"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="BUp-go-Wij">
@@ -638,7 +630,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </tabBar>
                     <connections>
                         <segue destination="11h-MG-0Y1" kind="relationship" relationship="viewControllers" id="OyR-9e-lky"/>
-                        <segue destination="cWd-CV-Gqd" kind="relationship" relationship="viewControllers" id="buL-ca-ala"/>
+                        <segue destination="7ub-iY-9jX" kind="relationship" relationship="viewControllers" id="buL-ca-ala"/>
                         <segue destination="NTs-h7-6Sx" kind="relationship" relationship="viewControllers" id="p6I-d4-p4r"/>
                     </connections>
                 </tabBarController>
@@ -683,6 +675,25 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ext-yf-0Op" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1623" y="-415"/>
+        </scene>
+        <!--Navigation Controller - Past-->
+        <scene sceneID="gVN-nh-Cy4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7ub-iY-9jX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Past" id="df6-Ev-qgO"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dbb-az-7vr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="cWd-CV-Gqd" kind="relationship" relationship="rootViewController" id="ebb-eQ-SD2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0eP-dL-xaU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="793" y="790"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

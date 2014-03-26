@@ -62,6 +62,35 @@
     return NO;
 }
 
+-(User *) fetchUserData:(NSString *)userID
+{
+    User *user = [[User alloc]init];
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+    NSError *error = nil;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"UserTable" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"userID == %@",userID];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray *array = [context executeFetchRequest:fetchRequest error:&error];
+    
+    NSManagedObject *managedObject = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
+    managedObject = (NSManagedObject*)[array objectAtIndex:0];
+    
+    user.userID = [managedObject valueForKey:@"userID"];
+    user.username = [managedObject valueForKey:@"username"];
+    user.first_name = [managedObject valueForKey:@"first_name"];
+    user.last_name = [managedObject valueForKey:@"last_name"];
+    user.email = [managedObject valueForKey:@"email"];
+    
+    return user;
+}
+
 - (NSManagedObjectContext *)managedObjectContext
 {
     NSManagedObjectContext *context = nil;
