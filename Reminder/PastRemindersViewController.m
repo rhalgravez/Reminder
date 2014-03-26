@@ -1,44 +1,49 @@
 //
-//  ReminderViewController.m
+//  PastRemindersViewController.m
 //  Reminder
 //
-//  Created by Roberto on 3/13/14.
+//  Created by Roberto on 3/26/14.
 //  Copyright (c) 2014 com. All rights reserved.
 //
 
-#import "ReminderViewController.h"
-#import "AddReminderTableViewController.h"
+#import "PastRemindersViewController.h"
 #import "EditReminderViewController.h"
 #import "PersistAndFetchReminderData.h"
 #import "Reminder.h"
 
-@interface ReminderViewController ()//<AddReminderDelegate>
+@interface PastRemindersViewController ()
 {
     NSMutableArray *remindersArray;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 @end
 
-@implementation ReminderViewController
+@implementation PastRemindersViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	// Do any additional setup after loading the view.
     PersistAndFetchReminderData *fetchReminders = [[PersistAndFetchReminderData alloc]init];
     remindersArray = (NSMutableArray*)[fetchReminders fetchReminders:_currentUser];
     
-    remindersArray =[self presentReminders:remindersArray];
-    
-   
+    remindersArray =[self pastReminders:remindersArray];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     PersistAndFetchReminderData *fetchReminders = [[PersistAndFetchReminderData alloc]init];
     remindersArray = (NSMutableArray*)[fetchReminders fetchReminders:_currentUser];
     
-    remindersArray =[self presentReminders:remindersArray];
+    remindersArray =[self pastReminders:remindersArray];
     [self.tableView reloadData];
 }
 
@@ -49,29 +54,22 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"addReminderSegue"]) {
-
-        UINavigationController *navigationController = segue.destinationViewController;
-        AddReminderTableViewController *addReminderTVC = (AddReminderTableViewController *)[navigationController.viewControllers objectAtIndex:0];
-        addReminderTVC.currentUser = self.currentUser;
-//        addReminderTVC.delegate =self ;
-
-    }
     
-    if ([segue.identifier isEqualToString:@"editReminderSegue"]) {
+    if ([segue.identifier isEqualToString:@"editPastReminder"]) {
         
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         
         EditReminderViewController *editReminderVC = segue.destinationViewController;
-//        AddReminderTableViewController *addReminderTVC = (AddReminderTableViewController *)[navigationController.viewControllers objectAtIndex:0];
+        //        AddReminderTableViewController *addReminderTVC = (AddReminderTableViewController *)[navigationController.viewControllers objectAtIndex:0];
         editReminderVC.selectedReminder = [remindersArray objectAtIndex:indexPath.row];
         
-//        addReminderTVC.delegate =self ;
+        //        addReminderTVC.delegate =self ;
         
     }
 }
 
-#pragma mark - TableViewDataSource Protocole 
+
+#pragma mark - TableViewDataSource Protocole
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [remindersArray count];
@@ -91,10 +89,10 @@
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, y, h:mm a"];
-//    NSLog(@"Todays date is %@",[formatter stringFromDate:[reminder startDate]]);
+    //    NSLog(@"Todays date is %@",[formatter stringFromDate:[reminder startDate]]);
     
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Start:%@  End:%@",[formatter stringFromDate:[reminder startDate]], [formatter stringFromDate:[reminder endDate]]];
-//    NSLog(@"ObjectID:%@",[reminder.objectID description]);
+    //    NSLog(@"ObjectID:%@",[reminder.objectID description]);
     return cell;
 }
 
@@ -118,37 +116,37 @@
     
 }
 
--(NSMutableArray *) presentReminders:(NSMutableArray *) reminders
+-(NSMutableArray *) pastReminders:(NSMutableArray *) reminders
 {
-    NSMutableArray *presentreminderArray = [[NSMutableArray alloc]init];
+    NSMutableArray *pastReminderArray = [[NSMutableArray alloc]init];
     
     NSDate *today = [NSDate date];
-//    NSDate *compareDate = [NSDate dateWithString:@"your date"];
-//    
-//    NSComparisonResult compareResult = [today compare : compareDate];
-//    
-//    if (compareResult == NSOrderedAscending)
-//    {
-//        NSLog(@"CompareDate is in the future");
-//    }
-//    else if (compareResult == NSOrderedDescending)
-//    {
-//        NSLog(@"CompareDate is in the past");
-//    }
+    //    NSDate *compareDate = [NSDate dateWithString:@"your date"];
+    //
+    //    NSComparisonResult compareResult = [today compare : compareDate];
+    //
+    //    if (compareResult == NSOrderedAscending)
+    //    {
+    //        NSLog(@"CompareDate is in the future");
+    //    }
+    //    else if (compareResult == NSOrderedDescending)
+    //    {
+    //        NSLog(@"CompareDate is in the past");
+    //    }
     
     for (int i = 0; i < [reminders count]; i++) {
         Reminder *tempReminder = [[Reminder alloc]init];
         tempReminder = [reminders objectAtIndex:i];
         NSComparisonResult compareResult = [today compare : tempReminder.startDate];
-        if (compareResult == NSOrderedAscending) {
-//            NSLog(@"REminder:%@",tempReminder.title);
-            [presentreminderArray addObject:tempReminder];
+        if (compareResult == NSOrderedDescending) {
+            //            NSLog(@"REminder:%@",tempReminder.title);
+            [pastReminderArray addObject:tempReminder];
         }
         
         
     }
     
-    return presentreminderArray;
+    return pastReminderArray;
 }
 
 #pragma mark - Core Data
@@ -160,15 +158,6 @@
     }
     return context;
 }
-//#pragma mark - Add reminder delegate methods
-//
-//-(void)addReminder:(Reminder *)reminder{
-//    
-//    NSLog(@"Simon Jalo");
-//    
-//}
-//
-//-(void)reloadReminder{
-//    
-//}
+
+
 @end

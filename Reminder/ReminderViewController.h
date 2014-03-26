@@ -12,7 +12,5 @@
 
 @property (nonatomic, strong) NSString *currentUser;
 
-- (IBAction)unwindToRecentReminders:(UIStoryboardSegue *)segue;
-
 
 @end

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6201E64318DA5DA20090ECE3 /* PersistAndFetchUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6201E64218DA5DA20090ECE3 /* PersistAndFetchUserData.m */; };
+		620359D318E3459A00291C43 /* PastRemindersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 620359D218E3459A00291C43 /* PastRemindersViewController.m */; };
 		624AAC3818DFE4C2000EDB2D /* AddReminderTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 624AAC3718DFE4C2000EDB2D /* AddReminderTableViewController.m */; };
 		626A2F3518E1F93B000ADB2F /* EditReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 626A2F3418E1F93B000ADB2F /* EditReminderViewController.m */; };
 		626A2F3818E24860000ADB2F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 626A2F3718E24860000ADB2F /* User.m */; };
@@ -48,6 +49,8 @@
 		2D344D1C84F54EF2980D894D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6201E64118DA5DA20090ECE3 /* PersistAndFetchUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistAndFetchUserData.h; sourceTree = "<group>"; };
 		6201E64218DA5DA20090ECE3 /* PersistAndFetchUserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistAndFetchUserData.m; sourceTree = "<group>"; };
+		620359D118E3459A00291C43 /* PastRemindersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PastRemindersViewController.h; sourceTree = "<group>"; };
+		620359D218E3459A00291C43 /* PastRemindersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PastRemindersViewController.m; sourceTree = "<group>"; };
 		624AAC3618DFE4C2000EDB2D /* AddReminderTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReminderTableViewController.h; sourceTree = "<group>"; };
 		624AAC3718DFE4C2000EDB2D /* AddReminderTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReminderTableViewController.m; sourceTree = "<group>"; };
 		626A2F3318E1F93B000ADB2F /* EditReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditReminderViewController.h; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				624AAC3718DFE4C2000EDB2D /* AddReminderTableViewController.m */,
 				626A2F3318E1F93B000ADB2F /* EditReminderViewController.h */,
 				626A2F3418E1F93B000ADB2F /* EditReminderViewController.m */,
+				620359D118E3459A00291C43 /* PastRemindersViewController.h */,
+				620359D218E3459A00291C43 /* PastRemindersViewController.m */,
 				62A5EDBA18D26CC700230BEF /* UserViewController.h */,
 				62A5EDBB18D26CC700230BEF /* UserViewController.m */,
 				6201E64118DA5DA20090ECE3 /* PersistAndFetchUserData.h */,
@@ -340,6 +345,7 @@
 			files = (
 				6201E64318DA5DA20090ECE3 /* PersistAndFetchUserData.m in Sources */,
 				62A5EDB918D235AF00230BEF /* LoginViewController.m in Sources */,
+				620359D318E3459A00291C43 /* PastRemindersViewController.m in Sources */,
 				626A2F3518E1F93B000ADB2F /* EditReminderViewController.m in Sources */,
 				624AAC3818DFE4C2000EDB2D /* AddReminderTableViewController.m in Sources */,
 				62CAFEB618D8B49400591C02 /* ReminderDataModel.xcdatamodeld in Sources */,
