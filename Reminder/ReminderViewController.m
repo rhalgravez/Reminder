@@ -32,23 +32,41 @@
     [super viewDidLoad];
     
 //    if (FBSession.activeSession.state != FBSessionStateCreatedTokenLoaded) {
-//        NSLog(@"PASAR A TAB");
-//        [self performSegueWithIdentifier:@"showLoginSegue" sender:nil];
+//        NSLog(@"State:%d", FBSession.activeSession.state);
+//        NSLog(@"Token:%d", FBSessionStateCreatedTokenLoaded);
+//        
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        LoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+//        
+//        [self presentViewController:loginVC animated:NO completion:nil];
+//    }else{
+        notificationArray = [[NSMutableArray alloc]init];
+        ReminderAppDelegate *appDelegate = (ReminderAppDelegate *)[[UIApplication sharedApplication] delegate];
+        self.currentUser = [appDelegate currentUser];  //etc.
+        
+        // Do any additional setup after loading the view, typically from a nib.
+        PersistAndFetchReminderData *fetchReminders = [[PersistAndFetchReminderData alloc]init];
+        remindersArray = (NSMutableArray*)[fetchReminders fetchReminders:_currentUser];
+        
+        remindersArray =[self presentReminders:remindersArray];
 //    }
-    notificationArray = [[NSMutableArray alloc]init];
-    ReminderAppDelegate *appDelegate = (ReminderAppDelegate *)[[UIApplication sharedApplication] delegate];
-   self.currentUser = [appDelegate currentUser];  //etc.
-    
-	// Do any additional setup after loading the view, typically from a nib.
-    PersistAndFetchReminderData *fetchReminders = [[PersistAndFetchReminderData alloc]init];
-    remindersArray = (NSMutableArray*)[fetchReminders fetchReminders:_currentUser];
-    
-    remindersArray =[self presentReminders:remindersArray];
+
     
    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    
+//    if (FBSession.activeSession.state != FBSessionStateCreatedTokenLoaded) {
+//        NSLog(@"State:%d", FBSession.activeSession.state);
+//        NSLog(@"Token:%d", FBSessionStateCreatedTokenLoaded);
+//        
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        LoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+//        
+//        [self presentViewController:loginVC animated:NO completion:nil];
+//    }
+    
     PersistAndFetchReminderData *fetchReminders = [[PersistAndFetchReminderData alloc]init];
     remindersArray = (NSMutableArray*)[fetchReminders fetchReminders:_currentUser];
     
@@ -109,7 +127,7 @@
     
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Start:%@  End:%@",[formatter stringFromDate:[reminder startDate]], [formatter stringFromDate:[reminder endDate]]];
 //    NSLog(@"ObjectID:%@",[reminder.objectID description]);
-    NSLog(@"ALGO");
+//    NSLog(@"ALGO");
     
     NSDate *alertTime = [[NSDate alloc]init];
     alertTime = reminder.startDate;

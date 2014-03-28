@@ -562,7 +562,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Login View Controller-->
         <scene sceneID="Nmd-wU-qji">
             <objects>
-                <viewController id="o7M-hs-G9h" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="o7M-hs-G9h" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UUT-xd-G7a"/>
                         <viewControllerLayoutGuide type="bottom" id="xwa-P9-zWb"/>
@@ -597,7 +597,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyv-WU-X6b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-510" y="599"/>
+            <point key="canvasLocation" x="-196" y="595"/>
         </scene>
         <!--Past Reminders View Controller - Past Reminders-->
         <scene sceneID="53f-nZ-uUV">
@@ -664,7 +664,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <!--Tab Bar Controller-->
         <scene sceneID="BUp-go-Wij">
             <objects>
-                <tabBarController storyboardIdentifier="tab" automaticallyAdjustsScrollViewInsets="NO" id="lcY-qi-GAU" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" id="lcY-qi-GAU" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="mAe-hO-ArT">
@@ -675,7 +675,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <segue destination="11h-MG-0Y1" kind="relationship" relationship="viewControllers" id="OyR-9e-lky"/>
                         <segue destination="7ub-iY-9jX" kind="relationship" relationship="viewControllers" id="buL-ca-ala"/>
                         <segue destination="NTs-h7-6Sx" kind="relationship" relationship="viewControllers" id="p6I-d4-p4r"/>
-                        <segue destination="o7M-hs-G9h" kind="modal" identifier="showLoginSegue" id="Tzn-Uw-Ctz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ibf-sO-w48" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -746,7 +745,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="dfw-wM-UPS"/>
         <segue reference="tfN-5z-xKK"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -18,9 +18,21 @@
 //    CGRect viewRect = [[UIScreen mainScreen] bounds];
 //    self.window = [[UIWindow alloc] initWithFrame:viewRect];
 //    
-//    LoginViewController *loginView = [[LoginViewController alloc]init];
-//    
-//    [self.window setRootViewController:loginView];
+//    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded){
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        [self.window makeKeyAndVisible];
+//        UITabBarController *initialViewController = (UITabBarController *)[storyboard instantiateViewControllerWithIdentifier:@"tabBarController"];
+//        self.window.rootViewController = initialViewController;
+//    }//else{
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        LoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+//        [self.window makeKeyAndVisible];
+//        [self.window.rootViewController presentViewController:loginVC animated:NO completion:nil];
+//    //}
+////
+////    LoginViewController *loginView = [[LoginViewController alloc]init];
+////    
+////    [self.window setRootViewController:loginView];
     
     
     [self managedObjectContext];
