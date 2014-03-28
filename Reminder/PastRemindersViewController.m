@@ -7,6 +7,9 @@
 //
 
 #import "PastRemindersViewController.h"
+
+#import "ReminderAppDelegate.h"
+
 #import "EditReminderViewController.h"
 #import "PersistAndFetchReminderData.h"
 #import "Reminder.h"
@@ -33,6 +36,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    ReminderAppDelegate *appDelegate = (ReminderAppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.currentUser = [appDelegate currentUser];  //etc.
+    
     PersistAndFetchReminderData *fetchReminders = [[PersistAndFetchReminderData alloc]init];
     remindersArray = (NSMutableArray*)[fetchReminders fetchReminders:_currentUser];
     

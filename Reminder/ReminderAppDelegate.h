@@ -12,6 +12,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (nonatomic, strong) NSString *currentUser;
+
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;

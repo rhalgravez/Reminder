@@ -7,14 +7,19 @@
 //
 
 #import "ReminderViewController.h"
+
+#import "ReminderAppDelegate.h"
+
 #import "AddReminderTableViewController.h"
 #import "EditReminderViewController.h"
 #import "PersistAndFetchReminderData.h"
+#import "LoginViewController.h"
 #import "Reminder.h"
 
 @interface ReminderViewController ()//<AddReminderDelegate>
 {
     NSMutableArray *remindersArray;
+    NSMutableArray *notificationArray;
 }
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -25,6 +30,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//    if (FBSession.activeSession.state != FBSessionStateCreatedTokenLoaded) {
+//        NSLog(@"PASAR A TAB");
+//        [self performSegueWithIdentifier:@"showLoginSegue" sender:nil];
+//    }
+    notificationArray = [[NSMutableArray alloc]init];
+    ReminderAppDelegate *appDelegate = (ReminderAppDelegate *)[[UIApplication sharedApplication] delegate];
+   self.currentUser = [appDelegate currentUser];  //etc.
+    
 	// Do any additional setup after loading the view, typically from a nib.
     PersistAndFetchReminderData *fetchReminders = [[PersistAndFetchReminderData alloc]init];
     remindersArray = (NSMutableArray*)[fetchReminders fetchReminders:_currentUser];
@@ -95,6 +109,30 @@
     
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Start:%@  End:%@",[formatter stringFromDate:[reminder startDate]], [formatter stringFromDate:[reminder endDate]]];
 //    NSLog(@"ObjectID:%@",[reminder.objectID description]);
+    NSLog(@"ALGO");
+    
+    NSDate *alertTime = [[NSDate alloc]init];
+    alertTime = reminder.startDate;
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    [offsetComponents setMinute:-10]; // note that I'm setting it to -1o min
+    alertTime = [gregorian dateByAddingComponents:offsetComponents toDate:alertTime options:0];
+    
+    //Notifications
+    UILocalNotification* notifyAlarm = [[UILocalNotification alloc] init];
+    notifyAlarm.fireDate = alertTime;
+    notifyAlarm.timeZone = [NSTimeZone defaultTimeZone];
+    notifyAlarm.soundName = UILocalNotificationDefaultSoundName;
+    notifyAlarm.alertBody = [NSString stringWithFormat:NSLocalizedString(@"%@ in 10 minutes.", nil), reminder.title]; //Mobile mastering stand up! (Roberto Manuel Halgravez) is starting at 3:00pm in Hangout
+    [notificationArray addObject:notifyAlarm];
+    if (indexPath.row == ([remindersArray count]-1)) {
+        UIApplication* app = [UIApplication sharedApplication];
+        [app setScheduledLocalNotifications:notificationArray];
+        
+    }
+    //-------------------------
+    
     return cell;
 }
 

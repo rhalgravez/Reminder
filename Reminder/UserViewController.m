@@ -7,6 +7,9 @@
 //
 
 #import "UserViewController.h"
+
+#import "ReminderAppDelegate.h"
+
 #import "PersistAndFetchUserData.h"
 #import "User.h"
 
@@ -35,6 +38,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    ReminderAppDelegate *appDelegate = (ReminderAppDelegate *)[[UIApplication sharedApplication] delegate];
+    self.currentUser = [appDelegate currentUser];
+    
     PersistAndFetchUserData *fetchUser =[[PersistAndFetchUserData alloc]init];
     User *userProfile = [[User alloc]init];
     
@@ -62,10 +69,10 @@
     
 //    [self dismissViewControllerAnimated:YES completion:^{
     
-        NSLog(@"Permissions:%@", [[FBSession activeSession] permissions]);
-        [[FBSession activeSession] closeAndClearTokenInformation];
+    NSLog(@"Permissions:%@", [[FBSession activeSession] permissions]);
+    [[FBSession activeSession] closeAndClearTokenInformation];
         
-        [self performSegueWithIdentifier:@"backToLoginViewController" sender:nil];
+    [self performSegueWithIdentifier:@"backToLoginViewController" sender:nil];
 //    }];
     
     

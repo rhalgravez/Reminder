@@ -7,6 +7,9 @@
 //
 
 #import "LoginViewController.h"
+
+#import "ReminderAppDelegate.h"
+
 #import "ReminderAppDelegate.h"
 #import "PersistAndFetchUserData.h"
 #import "ReminderViewController.h"
@@ -14,6 +17,8 @@
 #import "UserViewController.h"
 
 @interface LoginViewController ()
+
+
 
 @end
 
@@ -34,13 +39,25 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    
+    
     //_currentUser = [[NSString alloc]in]
+    NSLog(@"%@",_currentUser);
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
+        NSLog(@"PASAR A TAB");
+        [self dismissViewControllerAnimated:NO completion:nil];
+    }
+    
 }
 
 - (IBAction)login:(id)sender {
@@ -58,18 +75,22 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    ReminderAppDelegate *appDelegate = (ReminderAppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.currentUser = [self currentUser];  //etc.
+    
     if ([segue.identifier isEqualToString:@"toTabBarViewController"]) {
-        UITabBarController *tabBar = segue.destinationViewController;
-        UINavigationController *navigationController = (UINavigationController *)[[tabBar viewControllers] objectAtIndex:0];
-        ReminderViewController *reminderVC = (ReminderViewController *)[navigationController.viewControllers objectAtIndex:0];
-        reminderVC.currentUser = self.currentUser;
-        
-        UINavigationController *navigationController2 = (UINavigationController *)[[tabBar viewControllers] objectAtIndex:1];
-        PastRemindersViewController *pastRemindersVC = (PastRemindersViewController *) [navigationController2.viewControllers objectAtIndex:0];
-        pastRemindersVC.currentUser = self.currentUser;
-        
-        UserViewController *userVC = (UserViewController *) [[tabBar viewControllers] objectAtIndex:2];
-        userVC.currentUser = self.currentUser;
+//        UITabBarController *tabBar = segue.destinationViewController;
+//        UINavigationController *navigationController = (UINavigationController *)[[tabBar viewControllers] objectAtIndex:0];
+//        ReminderViewController *reminderVC = (ReminderViewController *)[navigationController.viewControllers objectAtIndex:0];
+//        reminderVC.currentUser = self.currentUser;
+//        
+//        UINavigationController *navigationController2 = (UINavigationController *)[[tabBar viewControllers] objectAtIndex:1];
+//        PastRemindersViewController *pastRemindersVC = (PastRemindersViewController *) [navigationController2.viewControllers objectAtIndex:0];
+//        pastRemindersVC.currentUser = self.currentUser;
+//        
+//        UserViewController *userVC = (UserViewController *) [[tabBar viewControllers] objectAtIndex:2];
+//        userVC.currentUser = self.currentUser;
         
     }
 }
@@ -84,7 +105,7 @@
             
             PersistAndFetchUserData *persistUserData = [[PersistAndFetchUserData alloc]init];
             [persistUserData persistData:(NSDictionary*)result];
-            
+ 
             [self performSegueWithIdentifier:@"toTabBarViewController" sender:nil];
             
         } else {
