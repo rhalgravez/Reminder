@@ -592,7 +592,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     </view>
                     <connections>
                         <outlet property="myLabel" destination="DQg-dG-Ox2" id="UMh-21-HJn"/>
-                        <segue destination="lcY-qi-GAU" kind="modal" identifier="toTabBarViewController" modalTransitionStyle="crossDissolve" id="0bD-oT-mne"/>
+                        <segue destination="lcY-qi-GAU" kind="custom" identifier="toTabBarViewController" customClass="ModalNoAnimationSegue" id="0bD-oT-mne"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qyv-WU-X6b" userLabel="First Responder" sceneMemberID="firstResponder"/>

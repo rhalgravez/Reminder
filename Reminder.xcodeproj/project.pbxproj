@@ -30,6 +30,7 @@
 		62A5EDBC18D26CC700230BEF /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62A5EDBB18D26CC700230BEF /* UserViewController.m */; };
 		62CAFEB318D8B2F800591C02 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62CAFEB218D8B2F800591C02 /* CoreData.framework */; };
 		62CAFEB618D8B49400591C02 /* ReminderDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 62CAFEB418D8B49400591C02 /* ReminderDataModel.xcdatamodeld */; };
+		62E0348018E63103003E1138 /* ModalNoAnimationSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 62E0347F18E63103003E1138 /* ModalNoAnimationSegue.m */; };
 		62F9AD0518DBA62F00CD1825 /* PersistAndFetchReminderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F9AD0418DBA62F00CD1825 /* PersistAndFetchReminderData.m */; };
 		62F9AD0818DBB92400CD1825 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 62F9AD0718DBB92400CD1825 /* Reminder.m */; };
 		C58924774E054B30ABDB659E /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDB90DA362604D339B1256ED /* libPods.a */; };
@@ -82,6 +83,8 @@
 		62A5EDBB18D26CC700230BEF /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		62CAFEB218D8B2F800591C02 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		62CAFEB518D8B49400591C02 /* ReminderDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReminderDataModel.xcdatamodel; sourceTree = "<group>"; };
+		62E0347E18E63103003E1138 /* ModalNoAnimationSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModalNoAnimationSegue.h; sourceTree = "<group>"; };
+		62E0347F18E63103003E1138 /* ModalNoAnimationSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModalNoAnimationSegue.m; sourceTree = "<group>"; };
 		62F9AD0318DBA62F00CD1825 /* PersistAndFetchReminderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersistAndFetchReminderData.h; sourceTree = "<group>"; };
 		62F9AD0418DBA62F00CD1825 /* PersistAndFetchReminderData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersistAndFetchReminderData.m; sourceTree = "<group>"; };
 		62F9AD0618DBB92400CD1825 /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
@@ -153,6 +156,8 @@
 			children = (
 				62A5ED9118D21F8900230BEF /* ReminderAppDelegate.h */,
 				62A5ED9218D21F8900230BEF /* ReminderAppDelegate.m */,
+				62E0347E18E63103003E1138 /* ModalNoAnimationSegue.h */,
+				62E0347F18E63103003E1138 /* ModalNoAnimationSegue.m */,
 				62A5ED9418D21F8900230BEF /* Main.storyboard */,
 				62A5ED9A18D21F8900230BEF /* Images.xcassets */,
 				62A5ED8918D21F8900230BEF /* Supporting Files */,
@@ -352,6 +357,7 @@
 				62F9AD0818DBB92400CD1825 /* Reminder.m in Sources */,
 				62F9AD0518DBA62F00CD1825 /* PersistAndFetchReminderData.m in Sources */,
 				62A5EDBC18D26CC700230BEF /* UserViewController.m in Sources */,
+				62E0348018E63103003E1138 /* ModalNoAnimationSegue.m in Sources */,
 				626A2F3818E24860000ADB2F /* User.m in Sources */,
 				62A5ED9318D21F8900230BEF /* ReminderAppDelegate.m in Sources */,
 				62A5ED8F18D21F8900230BEF /* main.m in Sources */,

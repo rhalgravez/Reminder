@@ -40,9 +40,10 @@
 	// Do any additional setup after loading the view.
     
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded) {
-        NSLog(@"State:%d", FBSession.activeSession.state);
-        NSLog(@"Token:%d", FBSessionStateCreatedTokenLoaded);
+//        NSLog(@"State:%d", FBSession.activeSession.state);
+//        NSLog(@"Token:%d", FBSessionStateCreatedTokenLoaded);
         
+        self.view.alpha = 0.0f;
 //        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
 //        LoginViewController *loginVC = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
 //        
