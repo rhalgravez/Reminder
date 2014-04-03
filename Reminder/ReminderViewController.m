@@ -51,7 +51,22 @@
         remindersArray =[self presentReminders:remindersArray];
 //    }
 
-    
+//    [FBRequestConnection startWithGraphPath:@"/me/permissions/publish_actions"
+//                                 parameters:nil
+//                                 HTTPMethod:@"delete"
+//                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+//
+//                              if (!error) {
+//                                  // Revoking the permission worked
+//                                  NSLog(@"Revoking the permission worked");
+//
+//
+//                              } else {
+//                                  // There was an error, handle it
+//                                  // See https://developers.facebook.com/docs/ios/errors/
+//                              }
+//
+//                          }];
    
 }
 

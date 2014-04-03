@@ -34,6 +34,8 @@
 @property(weak, nonatomic) IBOutlet UITableViewCell *notesCell;
 @property (weak, nonatomic) IBOutlet UITextView *notesTextView;
 
+@property (weak, nonatomic) IBOutlet UISwitch *postInFacebookSwitch;
+
 @property (strong, nonatomic) NSDate *selectedDate;
 
 @property (strong, nonatomic) UITextField *activeTextField;
@@ -49,6 +51,9 @@
     
     [self setupStartDateLabel];
     [self setupEndDateLabel];
+    
+    [self.startDatePicker setMinimumDate:[NSDate date]];
+    [self.endDatePicker setMinimumDate:[[NSDate date] dateByAddingTimeInterval:60]];
     
     _notesTextView.text = @"Add a comment...";
     _notesTextView.textColor = [UIColor lightGrayColor];
@@ -178,7 +183,7 @@
     
     [self.tableView beginUpdates];
     
-    [self.tableView endUpdates];
+    
     
     self.startDatePicker.hidden = NO;
     self.startDatePicker.alpha = 0.0f;
@@ -188,6 +193,8 @@
         self.startDatePicker.alpha = 1.0f;
         
     }];
+    
+    [self.tableView endUpdates];
 }
 
 - (void)showEndDatePickerCell {
@@ -198,7 +205,7 @@
     
     [self.tableView beginUpdates];
     
-    [self.tableView endUpdates];
+    
     
     self.endDatePicker.hidden = NO;
     self.endDatePicker.alpha = 0.0f;
@@ -208,6 +215,8 @@
         self.endDatePicker.alpha = 1.0f;
         
     }];
+    
+    [self.tableView endUpdates];
 }
 
 - (void)hideDatePickerCell {
@@ -275,6 +284,11 @@
     [textView resignFirstResponder];
 }
 
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
+{
+    [textView resignFirstResponder];
+    return YES;
+}
 
 #pragma mark - Action methods
 
@@ -301,6 +315,11 @@
     saveReminder = [[PersistAndFetchReminderData alloc] init];
     [saveReminder saveReminder:newReminder forUserWithID:_currentUser];
     
+    if (_postInFacebookSwitch.on) {
+        [self postInWall:newReminder];
+        
+    }
+    
     
     
     
@@ -321,6 +340,92 @@
 - (IBAction)pickerEndDateChanged:(UIDatePicker *)sender {
     self.endDateLabel.text = [self.dateFormatter stringFromDate:sender.date];
     self.selectedDate = sender.date;
+}
+
+
+
+#pragma mark - Facebook Post methods
+
+-(void) postInWall:(Reminder *)reminder
+{
+    // We will post on behalf of the user, these are the permissions we need:
+    NSArray *permissionsNeeded = @[@"publish_actions"];
+    
+    // Request the permissions the user currently has
+    [FBRequestConnection startWithGraphPath:@"/me/permissions"
+                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                              if (!error){
+                                  NSDictionary *currentPermissions= [(NSArray *)[result data] objectAtIndex:0];
+                                  NSMutableArray *requestPermissions = [[NSMutableArray alloc] initWithArray:@[]];
+                                  
+                                  // Check if all the permissions we need are present in the user's current permissions
+                                  // If they are not present add them to the permissions to be requested
+                                  for (NSString *permission in permissionsNeeded){
+                                      if (![currentPermissions objectForKey:permission]){
+                                          [requestPermissions addObject:permission];
+                                      }
+                                  }
+                                  
+                                  // If we have permissions to request
+                                  if ([requestPermissions count] > 0){
+                                      // Ask for the missing permissions
+                                      [FBSession.activeSession requestNewPublishPermissions:requestPermissions
+                                                                            defaultAudience:FBSessionDefaultAudienceFriends
+                                                                          completionHandler:^(FBSession *session, NSError *error) {
+                                                                              if (!error) {
+                                                                                  // Permission granted, we can request the user information
+                                                                                  [self makeRequestToUpdateStatusForReminder:reminder];
+                                                                              } else {
+                                                                                  // An error occurred, handle the error
+                                                                                  // See our Handling Errors guide: https://developers.facebook.com/docs/ios/errors/
+                                                                                  NSLog(@"%@", error.description);
+                                                                              }
+                                                                          }];
+                                  } else {
+                                      // Permissions are present, we can request the user information
+                                      [self makeRequestToUpdateStatusForReminder:reminder];
+                                  }
+                                  
+                              } else {
+                                  // There was an error requesting the permission information
+                                  // See our Handling Errors guide: https://developers.facebook.com/docs/ios/errors/
+                                  NSLog(@"%@",error.description);
+                              }
+                          }];
+}
+
+-(void)makeRequestToUpdateStatusForReminder:(Reminder *) reminder
+{
+    // NOTE: pre-filling fields associated with Facebook posts,
+    // unless the user manually generated the content earlier in the workflow of your app,
+    // can be against the Platform policies: https://developers.facebook.com/policy
+    //    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    NSString *status = [NSString stringWithFormat:@"Reminder: %@ at %@",reminder.title,reminder.startDate];
+    [FBRequestConnection startForPostStatusUpdate:status completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (!error) {
+            // Status update posted successfully to Facebook
+            NSLog(@"result: %@", result);
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
+//                                                            message:@"The post is now in your time line!"
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"OK"
+//                                                  otherButtonTitles:nil];
+//            [alert show];
+        } else {
+            // An error occurred, we need to handle the error
+            // See: https://developers.facebook.com/docs/ios/errors
+//            NSLog(@"Error Status Update:%@", error.description);
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error2"
+//                                                            message:@"There was something wrong."
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"OK"
+//                                                  otherButtonTitles:nil];
+//            [alert show];
+            NSLog(@"%@", [error description]);
+        }
+        
+    }];
 }
 
 @end
